@@ -1,0 +1,8 @@
+<h1>Countries</h1>
+
+<hr>
+<app-filters></app-filters>
+
+@for (country of listCountries | sortByOrder; track $index) {
+<app-card [country]="country"></app-card>
+}
