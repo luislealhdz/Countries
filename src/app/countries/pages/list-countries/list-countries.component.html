@@ -1,8 +1,11 @@
-<h1>Countries</h1>
+<section class="mx-auto max-w-screen-md lg:max-w-screen-xl">
+  <h1 class="text-3xl">Countries</h1>
 
-<hr>
-<app-filters></app-filters>
+  <!-- <app-filters (searchValueChanged)="onSearchChanged($event)"></app-filters> -->
 
-@for (country of listCountries | sortByOrder; track $index) {
-<app-card [country]="country"></app-card>
-}
+  <div class="flex flex-col items-center justify-center">
+    @for (country of listCountries | sortByOrder | filter: searchTerm; track $index) {
+    <app-card [country]="country"></app-card>
+    }
+  </div>
+</section>

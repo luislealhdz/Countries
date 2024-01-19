@@ -1,8 +1,14 @@
-<article>
-  <h4>{{ country.officialName }}</h4>
-  <p>{{ country.capital | getCapital }}</p>
-  <p>{{ country.region }}</p>
-  <p>{{ country.languages | getLanguages }}</p>
-  <p>{{ country.population }}</p>
+<article class="bg-white max-w-lg p-2	flex flex-col lg:flex-row items-center gap-4 h-auto lg:h-60 rounded-xl mb-3">
+  <div class="h-40 w-60">
+    <img class="w-full h-full object-cover" src="{{ country.flag }}" alt="{{ country.officialName }}">
+  </div>
+  <aside>
+    <h4 class="text-xl font-semibold">{{ country.officialName }}</h4>
+    <div class="flex gap-4">
+      <p><span class="font-bold">Capital:</span> {{ country.capital | getCapital }}</p>
+      <p><span class="font-bold">Region:</span> {{ country.region }}</p>
+    </div>
+    <!-- <p><span class="font-bold">Languages:</span> {{ country.languages | getLanguages }}</p> -->
+    <p><span class="font-bold">Population:</span> {{ country.population }}</p>
+  </aside>
 </article>
-<hr>

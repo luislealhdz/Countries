@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CountriesService } from '../../services/countries.service';
 import { Country, ICountry } from '../../interfaces/ICountry';
 import { map } from 'rxjs';
 import { CardComponent } from '../../components/card/card.component';
 import { SortByOrderPipe } from '../../pipes/sort-by-order.pipe';
 import { FiltersComponent } from '../../components/filters/filters.component';
+import { FilterPipe } from '../../pipes/filter.pipe';
 
 @Component({
   selector: 'app-list-countries',
   standalone: true,
-  imports: [CardComponent, SortByOrderPipe, FiltersComponent],
   templateUrl: './list-countries.component.html',
-  styleUrl: './list-countries.component.scss'
+  styleUrl: './list-countries.component.scss',
+  imports: [CardComponent, SortByOrderPipe, FiltersComponent, FilterPipe]
 })
 export class ListCountriesComponent implements OnInit {
   listCountries: Country[] = [];
+  searchTerm: string = '';
 
   constructor(private countriesService: CountriesService) {}
 
@@ -33,12 +35,17 @@ export class ListCountriesComponent implements OnInit {
             region: country.region,
             languages: country.languages,
             population: country.population,
-            flag: country.flag
+            flag: country.flags.png
           }))
         )
       )
       .subscribe(countries => {
         this.listCountries = countries;
       });
+  }
+
+  onSearchChanged(searchTerm: string) {
+    this.searchTerm = searchTerm;
+    console.log(searchTerm);
   }
 }
